@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while true; do
+  read info
+  echo $info > pipe
+  if [[ $info == "QUIT" ]]; then
+    break; 
+    exit 0
+  else
+    exit 1
+  fi
+done

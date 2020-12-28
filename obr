@@ -1,0 +1,40 @@
+#!/bin/bash
+
+param="+"
+
+tail -f pip | while true; 
+do
+  read key
+  case $key in
+    "QUIT")
+      killall tail
+      exit 0
+      ;;
+    "+")
+      param=$key
+      ;;
+    "*")
+      param=$line
+      ;;
+    [0-9]*)
+      case $key in
+        "+")
+	  sum=1
+	  sum=$(( sum + key ))
+	  echo $sum
+	  ;;
+	"*")
+	  mul=1
+	  mul=$(( mul + key )) 
+	  echo $mul
+	  ;;
+      esac
+      ;;
+    *)
+      killall tail
+      exit 1
+      ;;  
+  esac
+done
+
+
